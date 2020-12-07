@@ -161,4 +161,20 @@ function search_products_fxn($term){
         return false;
     }
 }
+
+function display_products_by_cat($id){
+    $product_object = new product_class;
+
+    $run_query = $product_object->display_products_by_cat($id);
+
+    if($run_query){
+        $products_arr = array();
+        while($record = $product_object->db_fetch()){
+            $products_arr[] = $record;
+        }
+        return $products_arr;
+    }else{
+        return false;
+    }
+}
 ?>

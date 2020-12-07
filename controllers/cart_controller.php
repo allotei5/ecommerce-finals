@@ -147,5 +147,35 @@ function delete_cart_item_nlog($product_id, $ip_add){
     }
 }
 
+function get_cart_items_no($customer_id){
+    $new_cart_object = new cart_class();
+
+    $run_query = $new_cart_object->get_cart_items_no($customer_id);
+
+    if($run_query){
+        $cart_arr = array();
+        $cart_arr = $new_cart_object->db_fetch();
+        return $cart_arr;
+    }else{
+        return false;
+    }
+
+}
+
+function get_cart_items_no_nlog($ip_add){
+    $new_cart_object = new cart_class();
+
+    $run_query = $new_cart_object->get_cart_items_no_nlog($ip_add);
+
+    if($run_query){
+        $cart_arr = array();
+        $cart_arr = $new_cart_object->db_fetch();
+        return $cart_arr;
+    }else{
+        return false;
+    }
+
+}
+
 
 ?>

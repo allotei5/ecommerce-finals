@@ -24,45 +24,15 @@ if(isset($_GET['term'])){
     <title>Home</title>
   </head>
   <body>
+      <?php include_once("navbar.php"); ?>
 
-      <div class="container-custom">
-          <div class="navbar-custom">
-              <div class="logo-custom">
-                    Navbar
-
-              </div>
-              <nav>
-                    <ul>
-                        <li><a href="">Home</a></li>
-                        <li><a href="">Shop</a></li>
-                        <li><a href="">Sign Up</a></li>
-                        <li><a href="">Login</a></li>
-                        <li><a href="">Cart</a></li>
-                        <li class="single-product">
-                  <form method="get" action="search-results.php">
-                      <input type="text" name="term" placeholder='search..' style='width: 200px;'>
-                      <button class="btn-custom"> Search</button>
-
-                  </form></li>
-
-                    </ul>
-
-
-
-              </nav>
-
-          </div>
-
-
-
-      </div>
       <div class="container-custom">
           <?php
           if(!empty($products)){
             foreach($products as $key => $value){
                 ?>
             <div class="media">
-              <img src="<?= '../'.$value['product_img'] ?>" class="align-self-start mr-3" alt="..." width="20%">
+              <img src="<?= '../'.$value['product_img'] ?>" class="align-self-start mr-3" alt="..." width="200px" height="200px">
               <div class="media-body">
                 <h5 class="mt-0"><?= $value['product_name'] ?></h5>
                 <h6 class="mt-0">By <?= $value['username'] ?></h6>

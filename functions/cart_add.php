@@ -7,7 +7,6 @@ $qty = $_GET['qty'];
 $ip_add = getRealIpAddr();
 $stock = get_stock($id);
 $r_qty = $stock['stock'] - 1;
-print_r($_SESSION);
 if($stock['stock'] > 0){
     //check for log in
     if(isset($_SESSION['user_id'])){

@@ -28,38 +28,9 @@ if(isset($_SESSION['user_id'])){
   </head>
   <body>
 
-      <div class="container-custom">
-          <div class="navbar-custom">
-              <div class="logo-custom">
-                    Navbar
-
-              </div>
-              <nav>
-                    <ul>
-                        <li><a href="">Home</a></li>
-                        <li><a href="">Shop</a></li>
-                        <li><a href="">Sign Up</a></li>
-                        <li><a href="">Login</a></li>
-                        <li><a href="">Cart</a></li>
-                        <li class="single-product">
-                  <form method="get" action="search-results.php">
-                      <input type="text" name="term" placeholder='search..' style='width: 200px;'>
-                      <button class="btn-custom"> Search</button>
-
-                  </form></li>
-
-                    </ul>
-
-
-
-              </nav>
-
-          </div>
-
-
-
-      </div>
-
+      <?php include_once("navbar.php");
+            if(!empty($cart_arr)){
+      ?>
       <div class="small-container cart-page">
           <table>
               <thead>
@@ -115,15 +86,24 @@ if(isset($_SESSION['user_id'])){
           </table>
 
       <div>
+
           <button class="btn-custom">Continue Shopping</button>
           <button class="btn-custom">Check Out</button>
 
           </div>
       </div>
+      <?php
+            }else{
+                ?>
+      <div class="small-container"><p>Your cart is empty. Continue <a href="shop.php"><span style="color: #398BEE">shopping</span></a></p></div>
+      <?php
+            }
 
 
+      ?>
 
    <?php
+
       if(isset($_SESSION['notifs'])){
         display_error_message($_SESSION['notifs']);
     }
@@ -145,7 +125,13 @@ if(isset($_SESSION['user_id'])){
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     -->
-
+<?php
+    print_r($_SESSION);
+    if(isset($_SESSION['notifs'])){
+        echo "hello";
+        display_error_message($_SESSION['notifs']);
+    }
+    ?>
 
   </body>
 </html>

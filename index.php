@@ -61,17 +61,25 @@ include_once (dirname(__FILE__)).'/settings/core.php';
           <div class="small-container">
               <h2 class="title">Categories</h2>
           <div class="row-custom">
-              <div class="col-3-custom">
+
+                  <div class="col-3-custom">
+                    <a href="view/shop.php?cat=1">
                     <img src="images/pexels-anthony-139038.jpg">
                     <h4 style="text-align: center">Games</h4>
+                    </a>
               </div>
+
               <div class="col-3-custom">
+                  <a href="view/shop.php?cat=2">
                     <img src="images/pexels-anthony-5626726.jpg">
                   <h4 style="text-align: center">Consoles</h4>
+                  </a>
               </div>
               <div class="col-3-custom">
+                  <a href="view/shop.php?cat=3">
                     <img src="images/pexels-garrett-morrow-1649771.jpg">
                   <h4 style="text-align: center">Accessories</h4>
+                  </a>
               </div>
 
 

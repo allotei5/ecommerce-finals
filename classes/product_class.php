@@ -80,5 +80,10 @@ JOIN `categories` ON (`products`.`product_cat` = `categories`.`id`)
 WHERE `products`.`product_name` LIKE '$term'";
         return $this->db_query($sql);
     }
+
+    public function display_products_by_cat($id){
+        $sql = "SELECT * FROM `products` WHERE `product_cat` = '$id'";
+        return $this->db_query($sql);
+    }
 }
 ?>

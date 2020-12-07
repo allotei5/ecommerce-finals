@@ -72,6 +72,16 @@ class cart_class extends db_connection
         return $this->db_query($sql);
     }
 
+    public function get_cart_items_no($customer_id){
+        $sql = "SELECT count(`customer_id`) AS `count` FROM `cart` WHERE `customer_id`='$customer_id'";
+        return $this->db_query($sql);
+    }
+
+    public function get_cart_items_no_nlog($ip_add){
+        $sql = "SELECT count(`ip_add`) AS `count` FROM `cart` WHERE `ip_add`='$ip_add'";
+        return $this->db_query($sql);
+    }
+
 
 
 }
