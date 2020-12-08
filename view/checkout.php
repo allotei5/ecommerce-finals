@@ -5,9 +5,7 @@ include_once (dirname(__FILE__)).'/../controllers/cart_controller.php';
 
 if(isset($_SESSION['user_id'])){
     $cart_arr = view_cart($_SESSION['user_id']);
-}else{
-    $ip_add = getRealIpAddr();
-    $cart_arr = view_cart_nlog($ip_add);
+    $cart_value = get_cart_value($_SESSION['user_id']);
 }
 ?>
 <!doctype html>
@@ -29,7 +27,7 @@ if(isset($_SESSION['user_id'])){
   <body>
 
       <?php include_once("navbar.php");
-            if(!empty($cart_arr)){
+
       ?>
       <div class="small-container cart-page">
           <table>
@@ -44,6 +42,7 @@ if(isset($_SESSION['user_id'])){
               </thead>
               <tbody>
                   <?php
+
                   foreach($cart_arr as $key => $value){
                       ?>
 
@@ -54,8 +53,6 @@ if(isset($_SESSION['user_id'])){
                           <div>
                               <p><?= $value['product_name'] ?></p>
                           <small>GHc <?= $value['product_price'] ?></small>
-                        <a href="<?= '../functions/cart_delete.php?id='.$value['product_id'] ?>">Remove</a>
-
                         </div>
 
 
@@ -64,11 +61,7 @@ if(isset($_SESSION['user_id'])){
                       </td>
 
               <td class="single-product">
-                  <form method="get" action="../functions/cart_update.php">
-                      <input type="number" name="qty" value="<?= $value['qty'] ?>">
-                      <input type="hidden" name="id" value="<?= $value['product_id'] ?>">
-                      <button class="btn-custom" name="submit"> Update </button>
-                  </form>
+                  <?= $value['qty'] ?>
 
               </td>
               <td> GHc <?= $value['qty']*$value['product_price'] ?></td>
@@ -84,23 +77,47 @@ if(isset($_SESSION['user_id'])){
               </tbody>
 
           </table>
+          <div class="total-price">
+              <table>
+                  <tr>
+                      <td>Sub Total</td>
+                      <td>Ghc <span id="amt"><?= $cart_value['result'] ?></span></td>
+                  </tr>
+                  <tr>
+                      <td>Total</td>
+                      <td>Ghc <span id="amt"><?= $cart_value['result'] ?></span></td>
+                  </tr>
+                  <tr>
+                      <td>Pay with</td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                        <div id="paypal-payment-button"></div>
+                    </td>
+                  </tr>
+                  <tr>
+                      <td>Or</td>
+                      <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                        <input type="hidden" id="email" value="<?= $_SESSION['user_email'] ?>">
+        <button class="btn btn-success btn-lg btn-block" onclick="payWithPaystack()" style="border-radius: 100px;">Paystack</button>
+                    </td>
+                  </tr>
+
+              </table>
+
+          </div>
 
       <div>
 
-          <button class="btn-custom" href="checkout.php">Continue Shopping</button>
-          <a href="checkout.php"><button class="btn-custom">Check Out</button></a>
+
 
           </div>
       </div>
-      <?php
-            }else{
-                ?>
-      <div class="small-container"><p>Your cart is empty. Continue <a href="shop.php"><span style="color: #398BEE">shopping</span></a></p></div>
-      <?php
-            }
 
-
-      ?>
 
    <?php
 
@@ -125,6 +142,30 @@ if(isset($_SESSION['user_id'])){
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AVfGv6Z5RwC0EOTNplKlG2XLXRhWWREacIPQKRdVDevDzmi6snUeA5MC4IYEUOo-ePbTIDMYhPT2iG-E&disable-funding=credit,card"></script>
+    <script src="../js/payment.js"></script>
+      <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script>
+        function payWithPaystack() {
+          let handler = PaystackPop.setup({
+            key: 'pk_test_87cf10201eaee5bb25a86a2264a139d191c890fb', // Replace with your public key
+            email: 'admin@gmail.com',
+            currency: "GHS",
+            amount: $('#amt').html() * 100,
+            // label: "Optional string that replaces customer email"
+            onClose: function(){
+              alert('Window closed.');
+            },
+            callback: function(response){
+              let message = 'Payment complete! Reference: ' + response.reference;
+              window.location.href = "../functions/process_payment.php?status=completed";
+              console.log(response.reference);
+              alert(message);
+            }
+          });
+          handler.openIframe();
+        }
+    </script>
 <?php
     print_r($_SESSION);
     if(isset($_SESSION['notifs'])){

@@ -49,6 +49,13 @@ function getRealIpAddr(){
      return $ip;
 }
 
+function add_to_notifs($note){
+    $notifs = array();
+    array_push($notifs, $note);
+    $_SESSION['notifs'] = $notifs;
+    echo "<script>window.history.back();</script>";
+}
+
 function display_error_message($errors){
     ?>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -76,14 +83,10 @@ function display_error_message($errors){
     <script>$('#exampleModal').modal('show')</script>
     <?php
     unset($_SESSION['notifs']);
+
 }
 
-function add_to_notifs($note){
-    $notifs = array();
-    array_push($notifs, $note);
-    $_SESSION['notifs'] = $notifs;
-    echo "<script>window.history.back();</script>";
-}
+
 
 
 

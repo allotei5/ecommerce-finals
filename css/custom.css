@@ -215,3 +215,22 @@ td a{
 
     text-align: center;
 }
+
+.total-price{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.total-price table{
+    border-top: 3px solid #398BEE;
+    width: 100%;
+    max-width: 400px;
+}
+
+td:last-child{
+    text-align: right;
+}
+
+th:last-child{
+    text-align: right;
+}

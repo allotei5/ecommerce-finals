@@ -82,6 +82,56 @@ class cart_class extends db_connection
         return $this->db_query($sql);
     }
 
+    public function update_cart_with_user_id($customer_id, $ip_add){
+        $sql = "UPDATE `cart` SET `customer_id`='$customer_id' WHERE `ip_add`='$ip_add'";
+        return $this->db_query($sql);
+    }
+
+    public function get_cart_value($customer_id){
+        $sql = "SELECT SUM(`products`.`product_price`*`cart`.`qty`) as result FROM `cart` JOIN `products` ON (`products`.`id` = `cart`.`product_id`) WHERE `cart`.`customer_id` = '$customer_id'";
+        return $this->db_query($sql);
+    }
+
+    public function add_order($customer_id, $invoice_no, $ord_date, $order_status){
+        $sql = "INSERT INTO `orders`(`customer_id`, `invoice_no`, `ord_date`, `order_status`) VALUES ('$customer_id', '$invoice_no', '$ord_date', '$order_status')";
+        return $this->db_query($sql);
+    }
+
+    public function add_order_details($order_id, $product_id, $qty, $status){
+        $sql = "INSERT INTO `order_details`(`order_id`, `product_id`, `qty`, `status`) VALUES ('$order_id', '$product_id', '$qty', '$status')";
+        return $this->db_query($sql);
+    }
+
+    public function recent_order(){
+        $sql = "SELECT MAX(`id`) as recent FROM `orders`";
+        return $this->db_query($sql);
+    }
+
+    public function add_payment($amt, $customer_id, $order_id, $currency, $payment_date){
+        $sql = "INSERT INTO `payment`(`amount`, `customer_id`, `order_id`, `currency`, `payment_date`) VALUES ('$amt', '$customer_id', '$order_id', '$currency', '$payment_date')";
+        return $this->db_query($sql);
+    }
+
+    public function clear_cart($customer_id){
+        $sql = "DELETE FROM `cart` WHERE `customer_id`='$customer_id'";
+        return $this->db_query($sql);
+    }
+
+    public function get_order($order_id){
+        $sql = "SELECT `users`.`username`, `orders`.`id`, `orders`.`invoice_no`, `orders`.`ord_date`, `orders`.`order_status` FROM `orders` JOIN `users` ON (`users`.`id` = `orders`.`id`) WHERE `orders`.`id`='$order_id'";
+        return $this->db_query($sql);
+    }
+
+    public function get_order_details($order_id){
+        $sql = "SELECT `products`.`product_name`, `products`.`product_img`, `products`.`product_price`, `order_details`.`qty`, `order_details`.`qty`*`products`.`product_price` as result FROM `order_details` JOIN `products` ON (`order_details`.`product_id` = `products`.`id`) WHERE `order_id`='$order_id'";
+        return $this->db_query($sql);
+    }
+
+    public function get_payment($order_id){
+        $sql = "SELECT `amount` FROM `payment` WHERE `order_id`='$order_id'";
+        return $this->db_query($sql);
+    }
+
 
 
 }

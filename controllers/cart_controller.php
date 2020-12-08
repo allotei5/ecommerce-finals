@@ -177,5 +177,149 @@ function get_cart_items_no_nlog($ip_add){
 
 }
 
+function update_cart_with_user_id($customer_id, $ip_add){
+    $cart_object = new cart_class;
+
+    $run_query = $cart_object->update_cart_with_user_id($customer_id, $ip_add);
+
+    if($run_query){
+        return $run_query;
+    }else{
+        return false;
+    }
+}
+
+function get_cart_value($customer_id){
+    $new_cart_object = new cart_class();
+
+    $run_query = $new_cart_object->get_cart_value($customer_id);
+
+    if($run_query){
+        $cart_arr = array();
+        $cart_arr = $new_cart_object->db_fetch();
+        return $cart_arr;
+    }else{
+        return false;
+    }
+}
+
+function add_order($customer_id, $invoice_no, $ord_date, $order_status){
+    $cart_object = new cart_class;
+
+    $run_query = $cart_object->add_order($customer_id, $invoice_no, $ord_date, $order_status);
+
+    if($run_query){
+        return $run_query;
+    }else{
+        return false;
+    }
+}
+
+function add_order_details($order_id, $product_id, $qty, $status){
+    $cart_object = new cart_class;
+
+    $run_query = $cart_object->add_order_details($order_id, $product_id, $qty, $status);
+
+    if($run_query){
+        return $run_query;
+    }else{
+        return false;
+    }
+}
+
+function recent_order(){
+    $new_cart_object = new cart_class();
+
+    $run_query = $new_cart_object->recent_order();
+
+    if($run_query){
+        $cart_arr = array();
+        $cart_arr = $new_cart_object->db_fetch();
+        return $cart_arr;
+    }else{
+        return false;
+    }
+}
+
+function add_payment($amt, $customer_id, $order_id, $currency, $payment_date){
+    $cart_object = new cart_class;
+
+    $run_query = $cart_object->add_payment($amt, $customer_id, $order_id, $currency, $payment_date);
+
+    if($run_query){
+        return $run_query;
+    }else{
+        return false;
+    }
+}
+
+function clear_cart($customer_id){
+    $cart_object = new cart_class;
+
+    $run_query = $cart_object->clear_cart($customer_id);
+
+    if($run_query){
+        return $run_query;
+    }else{
+        return false;
+    }
+}
+
+function update_stock($product_id, $r_qty){
+    $cart_object = new cart_class;
+
+    $run_query = $cart_object->update_stock($product_id, $r_qty);
+
+    if($run_query){
+        return $run_query;
+    }else{
+        return false;
+    }
+}
+
+function get_order($order_id){
+    $new_cart_object = new cart_class();
+
+    $run_query = $new_cart_object->get_order($order_id);
+
+    if($run_query){
+        $cart_arr = array();
+        $cart_arr = $new_cart_object->db_fetch();
+        return $cart_arr;
+    }else{
+        return false;
+    }
+}
+
+function get_order_details($order_id){
+    $new_cart_object = new cart_class();
+
+    $run_query = $new_cart_object->get_order_details($order_id);
+    if($run_query){
+        $cart_arr = array();
+        while($record = $new_cart_object->db_fetch()){
+            $cart_arr[] = $record;
+
+        }
+        return $cart_arr;
+    }else{
+        return false;
+    }
+}
+
+function get_payment($order_id){
+    $new_cart_object = new cart_class();
+
+    $run_query = $new_cart_object->get_payment($order_id);
+
+    if($run_query){
+        $cart_arr = array();
+        $cart_arr = $new_cart_object->db_fetch();
+        return $cart_arr;
+    }else{
+        return false;
+    }
+}
+
 
 ?>

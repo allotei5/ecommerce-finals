@@ -2,12 +2,9 @@
 include_once (dirname(__FILE__)).'/../settings/core.php';
 include_once (dirname(__FILE__)).'/../controllers/product_controller.php';
 include_once (dirname(__FILE__)).'/../controllers/cart_controller.php';
-
-if(isset($_SESSION['user_id'])){
-    $cart_arr = view_cart($_SESSION['user_id']);
-}else{
-    $ip_add = getRealIpAddr();
-    $cart_arr = view_cart_nlog($ip_add);
+if(isset($_GET['ord_id'])){
+    $cart_arr = get_order_details($_GET['ord_id']);
+    $payment = get_payment($_GET['ord_id']);
 }
 ?>
 <!doctype html>
@@ -23,14 +20,34 @@ if(isset($_SESSION['user_id'])){
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../css/custom.css">
+    <style>
+        .header-custom-2{
+            background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url("../images/pexels-jeshootscom-442576.jpg");
+    background-size: cover;
+    background-position: top;
+    height: 400px;
+    background-color: rgba(0,0,0,0.9);
+        }
+
+      </style>
 
     <title>Home</title>
   </head>
   <body>
+      <?php include_once("navbar.php"); ?>
+      <div class="header-custom-2">
+      <div class="container-custom">
+          <div class="row-custom">
+              <div class="col-2-custom texts">
+                  <h1 style="color: #fff">Thank You!</h1>
+              </div>
 
-      <?php include_once("navbar.php");
-            if(!empty($cart_arr)){
-      ?>
+          </div>
+
+
+      </div>
+      </div>
+
       <div class="small-container cart-page">
           <table>
               <thead>
@@ -44,6 +61,7 @@ if(isset($_SESSION['user_id'])){
               </thead>
               <tbody>
                   <?php
+
                   foreach($cart_arr as $key => $value){
                       ?>
 
@@ -54,8 +72,6 @@ if(isset($_SESSION['user_id'])){
                           <div>
                               <p><?= $value['product_name'] ?></p>
                           <small>GHc <?= $value['product_price'] ?></small>
-                        <a href="<?= '../functions/cart_delete.php?id='.$value['product_id'] ?>">Remove</a>
-
                         </div>
 
 
@@ -64,11 +80,7 @@ if(isset($_SESSION['user_id'])){
                       </td>
 
               <td class="single-product">
-                  <form method="get" action="../functions/cart_update.php">
-                      <input type="number" name="qty" value="<?= $value['qty'] ?>">
-                      <input type="hidden" name="id" value="<?= $value['product_id'] ?>">
-                      <button class="btn-custom" name="submit"> Update </button>
-                  </form>
+                  <?= $value['qty'] ?>
 
               </td>
               <td> GHc <?= $value['qty']*$value['product_price'] ?></td>
@@ -84,31 +96,27 @@ if(isset($_SESSION['user_id'])){
               </tbody>
 
           </table>
+          <div class="total-price">
+              <table>
+                  <tr>
+                      <td>Sub Total</td>
+                      <td>Ghc <span id="amt"><?= $payment['amount'] ?></span></td>
+                  </tr>
+                  <tr>
+                      <td>Total</td>
+                      <td>Ghc <span id="amt"><?= $payment['amount'] ?></span></td>
+                  </tr>
+
+              </table>
+
+          </div>
 
       <div>
 
-          <button class="btn-custom" href="checkout.php">Continue Shopping</button>
-          <a href="checkout.php"><button class="btn-custom">Check Out</button></a>
+
 
           </div>
       </div>
-      <?php
-            }else{
-                ?>
-      <div class="small-container"><p>Your cart is empty. Continue <a href="shop.php"><span style="color: #398BEE">shopping</span></a></p></div>
-      <?php
-            }
-
-
-      ?>
-
-   <?php
-
-      if(isset($_SESSION['notifs'])){
-        display_error_message($_SESSION['notifs']);
-    }
-    ?>
-
 
 
 
@@ -125,12 +133,12 @@ if(isset($_SESSION['user_id'])){
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     -->
-<?php
-    print_r($_SESSION);
+
+      <?php
+
     if(isset($_SESSION['notifs'])){
         display_error_message($_SESSION['notifs']);
     }
     ?>
-
   </body>
 </html>
