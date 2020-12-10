@@ -22,11 +22,16 @@ if(isset($_POST['submit'])){
                 if(isset($_SESSION['notloggedin'])){
 
                     $update_cart = update_cart_with_user_id($_SESSION['user_id'], $ip_add);
+
                     header("location: ../view/checkout.php");
                 }else{
+
                     $items = get_cart_items_no_nlog($ip_add);
                     if($items['count']>0){
+                        echo "hi";
                         $update_cart = update_cart_with_user_id($_SESSION['user_id'],$ip_add);
+                        header("location: ../index.php");
+                    }else{
                         header("location: ../index.php");
                     }
                 }

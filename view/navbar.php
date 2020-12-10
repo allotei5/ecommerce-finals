@@ -30,8 +30,19 @@
                         <li><a href="shop.php">Shop</a></li>
                         <li><a href="cart.php">Cart(<?= $cart['count'] ?>)</a></li>
                         <li><a href="products.php">Your Products</a></li>
+                        <li><a href="products.php">Your Orders</a></li>
                         <li><a href="../login/logout.php">Logout</a></li>
 
+
+
+                        <?php
+                            }elseif($_SESSION['user_role'] == 3){
+                                ?>
+                        <li><a href="../index.php">Home</a></li>
+                        <li><a href="shop.php">Shop</a></li>
+                        <li><a href="cart.php">Cart(<?= $cart['count'] ?>)</a></li>
+
+                        <li><a href="../login/logout.php">Logout</a></li>
 
                         <?php
                             }

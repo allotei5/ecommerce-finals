@@ -132,6 +132,38 @@ class cart_class extends db_connection
         return $this->db_query($sql);
     }
 
+    public function get_unfulfilled_seller_orders($seller_id){
+        $sql = "SELECT `users`.`username`, `users`.`id`, `users`.`contact`, `products`.`product_name`, `products`.`product_price`,`order_details`.`qty`, `order_details`.`status`, `order_details`.`product_id`, `orders`.`ord_date`,`order_details`.`order_id`
+FROM `orders`
+JOIN `users` ON (`users`.`id` = `orders`.`customer_id`)
+JOIN `order_details` ON (`order_details`.`order_id` = `orders`.`id`)
+JOIN `products` ON (`products`.`id` = `order_details`.`product_id`)
+WHERE `users`.`id`='$seller_id'
+AND `order_details`.`status`='unfulfilled'";
+        return $this->db_query($sql);
+    }
+
+    public function get_fulfilled_seller_orders($seller_id){
+        $sql = "SELECT `users`.`username`, `users`.`id`, `users`.`contact`, `products`.`product_name`, `products`.`product_price`,`order_details`.`qty`, `order_details`.`status`, `order_details`.`product_id`, `orders`.`ord_date`,`order_details`.`order_id`
+FROM `orders`
+JOIN `users` ON (`users`.`id` = `orders`.`customer_id`)
+JOIN `order_details` ON (`order_details`.`order_id` = `orders`.`id`)
+JOIN `products` ON (`products`.`id` = `order_details`.`product_id`)
+WHERE `users`.`id`='$seller_id'
+AND `order_details`.`status`='fulfilled'";
+        return $this->db_query($sql);
+    }
+
+    public function update_order_status($product_id, $order_id){
+        $sql = "UPDATE `order_details` SET `status`='fulfilled' WHERE `order_id`='$order_id' AND `product_id`='$product_id'";
+        return $this->db_query($sql);
+    }
+
+    public function get_seller_sales($seller_id){
+        $sql = "SELECT SUM(`products`.`product_price`*`order_details`.`qty`) as result FROM `users`,`order_details` JOIN `products` ON (`order_details`.`product_id` = `products`.`id`) WHERE `users`.`id`='$seller_id'";
+        return $this->db_query($sql);
+    }
+
 
 
 }

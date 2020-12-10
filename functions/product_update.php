@@ -20,7 +20,7 @@ if(isset($_POST['submit'])){
 
     //check if fields are of appropriate length
     if(strlen($title) > 200){array_push($errors, "title is too long");}
-    if(strlen($desc) > 500){array_push($errors, "description is too long");}
+    if(strlen($desc) > 1000){array_push($errors, "description is too long");}
 
     //checking to see if picture is to be updated
     //check if a new file name is set

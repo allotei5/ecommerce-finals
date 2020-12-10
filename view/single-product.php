@@ -4,7 +4,7 @@ include_once (dirname(__FILE__)).'/../controllers/product_controller.php';
 $products_arr = display_all_products_fxn();
 if(isset($_GET['id'])){
     $product = display_one_product($_GET['id']);
-    print_r($product);
+
 }
 ?>
 <!doctype html>

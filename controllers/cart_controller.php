@@ -321,5 +321,65 @@ function get_payment($order_id){
     }
 }
 
+function get_unfulfilled_seller_orders($seller_id){
+    $new_cart_object = new cart_class();
+
+    $run_query = $new_cart_object->get_unfulfilled_seller_orders($seller_id);
+    if($run_query){
+        $cart_arr = array();
+        while($record = $new_cart_object->db_fetch()){
+            $cart_arr[] = $record;
+
+        }
+        return $cart_arr;
+    }else{
+        return false;
+    }
+}
+
+function get_fulfilled_seller_orders($seller_id){
+    $new_cart_object = new cart_class();
+
+    $run_query = $new_cart_object->get_fulfilled_seller_orders($seller_id);
+    if($run_query){
+        $cart_arr = array();
+        while($record = $new_cart_object->db_fetch()){
+            $cart_arr[] = $record;
+
+        }
+        return $cart_arr;
+    }else{
+        return false;
+    }
+}
+
+function update_order_status($product_id, $order_id){
+    $cart_object = new cart_class;
+
+    $run_query = $cart_object->update_order_status($product_id, $order_id);
+
+    if($run_query){
+        return $run_query;
+    }else{
+        return false;
+    }
+}
+
+function get_seller_sales($seller_id){
+    $new_cart_object = new cart_class();
+
+    $run_query = $new_cart_object->get_seller_sales($seller_id);
+    if($run_query){
+        $cart_arr = array();
+        while($record = $new_cart_object->db_fetch()){
+            $cart_arr[] = $record;
+
+        }
+        return $cart_arr;
+    }else{
+        return false;
+    }
+}
+
 
 ?>
