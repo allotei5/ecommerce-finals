@@ -6,6 +6,9 @@ include_once (dirname(__FILE__)).'/../controllers/cart_controller.php';
 if(isset($_SESSION['user_id'])){
     $cart_arr = view_cart($_SESSION['user_id']);
     $cart_value = get_cart_value($_SESSION['user_id']);
+}else{
+    $_SESSION['notloggedin'] = true;
+    header("location: ../login/login.php");
 }
 ?>
 <!doctype html>
@@ -126,6 +129,48 @@ if(isset($_SESSION['user_id'])){
     }
     ?>
 
+<div class="footer">
+          <div class="container-custom">
+              <div class="row-custom">
+                  <div class="footer-col-1">
+                      <h3>Download Our App</h3>
+                      <p>Download App for Android and ios mobile phone</p>
+
+
+                  </div>
+
+                  <div class="footer-col-2">
+                      <h3>Our Purpose</h3>
+                      <p>Our purpose is to sustainably make the pleasure and benefits of sports accessible to many</p>
+                  </div>
+
+                  <div class="footer-col-3">
+
+                      <h3>Useful Links</h3>
+                      <ul>
+                          <li>Home</li>
+                          <li>Shop</li>
+                          <li>Cart</li>
+
+                      </ul>
+                  </div>
+
+                  <div class="footer-col-4">
+                      <h3>Follow Us</h3>
+                      <ul>
+                          <li>Facebook</li>
+                          <li>Twitter</li>
+                          <li>Instagram</li>
+
+                      </ul>
+                  </div>
+
+              </div>
+
+          </div>
+
+
+      </div>
 
 
 
@@ -148,7 +193,7 @@ if(isset($_SESSION['user_id'])){
     <script>
         function payWithPaystack() {
           let handler = PaystackPop.setup({
-            key: 'pk_test_87cf10201eaee5bb25a86a2264a139d191c890fb', // Replace with your public key
+            key: 'pk_test_799097618d614512de920a18fca5a294036f30f4', // Replace with your public key
             email: 'admin@gmail.com',
             currency: "GHS",
             amount: $('#amt').html() * 100,
@@ -167,7 +212,6 @@ if(isset($_SESSION['user_id'])){
         }
     </script>
 <?php
-    print_r($_SESSION);
     if(isset($_SESSION['notifs'])){
         display_error_message($_SESSION['notifs']);
     }

@@ -1,10 +1,9 @@
 <?php
-include_once("../../settings/core.php");
-include_once("../../controllers/cart_controller.php");
-print_r($_SESSION);
-$orders = get_unfulfilled_seller_orders($_SESSION['user_id']);
-$fulfilled = get_fulfilled_seller_orders($_SESSION['user_id']);
-$sales = get_seller_sales($_SESSION['user_id']);
+include_once("../settings/core.php");
+include_once("../controllers/product_controller.php");
+$categories_arr = display_categories();
+$product = display_one_product($_GET['id']);
+
 ?>
 <!--
 =========================================================
@@ -22,8 +21,8 @@ The above copyright notice and this permission notice shall be included in all c
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Material Dashboard by Creative Tim
@@ -33,14 +32,16 @@ The above copyright notice and this permission notice shall be included in all c
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
-  <link href="../assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+  <link href="assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <link href="assets/demo/demo.css" rel="stylesheet" />
+
+
 </head>
 
 <body class="">
   <div class="wrapper ">
-    <div class="sidebar" data-color="azure" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+    <div class="sidebar" data-color="azure" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -51,60 +52,25 @@ The above copyright notice and this permission notice shall be included in all c
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item  ">
-            <a class="nav-link" href="./dashboard.html">
-              <i class="material-icons">dashboard</i>
-              <p>Dashboard</p>
+          <li class="nav-item">
+            <a class="nav-link" href="./dashboard.php">
+              <i class="material-icons">orders</i>
+              <p>Products</p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./user.html">
-              <i class="material-icons">person</i>
-              <p>User Profile</p>
+          <li class="nav-item">
+            <a class="nav-link" href="./products_add.php">
+              <i class="material-icons">orders</i>
+              <p>Add New Product</p>
             </a>
           </li>
-          <li class="nav-item active ">
-            <a class="nav-link" href="./tables.html">
-              <i class="material-icons">content_paste</i>
-              <p>Table List</p>
+          <li class="nav-item">
+            <a class="nav-link" href="./orders.php">
+              <i class="material-icons">orders</i>
+              <p>Orders</p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./typography.html">
-              <i class="material-icons">library_books</i>
-              <p>Typography</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./icons.html">
-              <i class="material-icons">bubble_chart</i>
-              <p>Icons</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./map.html">
-              <i class="material-icons">location_ons</i>
-              <p>Maps</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./notifications.html">
-              <i class="material-icons">notifications</i>
-              <p>Notifications</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./rtl.html">
-              <i class="material-icons">language</i>
-              <p>RTL Support</p>
-            </a>
-          </li>
-          <li class="nav-item active-pro ">
-            <a class="nav-link" href="./upgrade.html">
-              <i class="material-icons">unarchive</i>
-              <p>Upgrade to PRO</p>
-            </a>
-          </li>
+
         </ul>
       </div>
     </div>
@@ -114,186 +80,58 @@ The above copyright notice and this permission notice shall be included in all c
 
       <div class="content">
         <div class="container-fluid">
-            <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-warning card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">store</i>
-                  </div>
-                  <p class="card-category">Sales</p>
-                  <h3 class="card-title">Ghc <?= $sales[0]['result'] ?></h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <a>All Time</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-warning card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">money</i>
-                  </div>
-                  <p class="card-category">Withdrawable</p>
-                  <h3 class="card-title">Ghc 500</h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <a href="" >Withdraw</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-        </div>
-          <div class="row">
+             <div class="row">
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Unfulfilled Orders</h4>
-                  <p class="card-category"> Please deliver these orders</p>
+                  <h4 class="card-title ">Update Product</h4>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table">
-                      <thead class=" text-primary">
-                        <th>
-                          ID
-                        </th>
-                        <th>
-                          Customer Name
-                        </th>
-                          <th>
-                          Contact
-                        </th>
-                        <th>
-                          Product
-                        </th>
-                        <th>
-                          Quantity
-                        </th>
-                        <th>
-                          Sub-Total
-                        </th>
-                        <th>
-                          Confirm Receipt
-                        </th>
-                      </thead>
-                      <tbody>
-                        <?php
-                          foreach($orders as $key => $value){
-                              $a = 0;
-                              $a = $a +1;
-                              ?>
-                          <tr>
-                          <td>
-                            <?php echo $a; ?>
-                          </td>
-                          <td>
-                            <?= $value['username'] ?>
-                          </td>
-                          <td>
-                            <?= $value['contact'] ?>
-                          </td>
-                          <td>
-                            <?= $value['product_name'] ?>
-                          </td>
-                          <td>
-                            <?= $value['qty'] ?>
-                          </td>
-                          <td class="text-primary">
-                            <?= $value['product_price'] * $value['qty'] ?>
-                          </td>
-                        <td class="text-primary">
-                            <a href="<?= '../../functions/order_details_update.php?pid='.$value['product_id'].'&ord_id='.$value['order_id'] ?>" class="btn btn-primary">Update</a>
-                          </td>
-                        </tr>
-
-                          <?php
-
-                          }
-
-                          ?>
-
-
-                        </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
+                    <form method="post" action="../functions/product_update.php" enctype="multipart/form-data">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputname">Product Name</label>
+              <input type="text" class="form-control" id="inputname" name="product_name" value="<?= $product['product_name'] ?>">
             </div>
+            <div class="form-group col-md-6">
+              <label for="inputprice">Price: Ghc</label>
+              <input type="number" class="form-control" id="inputprice" name="product_price" value="<?= $product['product_price'] ?>">
             </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Fulfilled Orders</h4>
-                  <p class="card-category"> These orders have been delivered</p>
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead class=" text-primary">
-                        <th>
-                          ID
-                        </th>
-                        <th>
-                          Customer Name
-                        </th>
-                          <th>
-                          Contact
-                        </th>
-                        <th>
-                          Product
-                        </th>
-                        <th>
-                          Quantity
-                        </th>
-                        <th>
-                          Sub-Total
-                        </th>
-                      </thead>
-                      <tbody>
-                        <?php
-                          foreach($fulfilled as $key => $value){
-                              $a = 0;
-                              $a = $a +1;
-                              ?>
-                          <tr>
-                          <td>
-                            <?php echo $a; ?>
-                          </td>
-                          <td>
-                            <?= $value['username'] ?>
-                          </td>
-                          <td>
-                            <?= $value['contact'] ?>
-                          </td>
-                          <td>
-                            <?= $value['product_name'] ?>
-                          </td>
-                          <td>
-                            <?= $value['qty'] ?>
-                          </td>
-                          <td class="text-primary">
-                            <?= $value['product_price'] * $value['qty'] ?>
-                          </td>
-                        </tr>
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Description</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="desc"><?= $product['product_desc'] ?></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputauthor">Category</label>
+              <select name="category" id="inputauthor" class="form-control">
+                <option value="<?php echo $product['product_cat']; ?>" selected><?php echo $product['cat_name']; ?></option>
+                <?php
+                  foreach($categories_arr as $key =>$value){
+                ?>
+                  <option value="<?php echo $value['id']; ?>"><?php echo $value['cat_name']; ?></option>
+                  <?php
+                  }
+                  ?>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputstock">Stock</label>
+              <input type="number" class="form-control" id="inputstock" name="stock" value="<?= $product['stock'] ?>">
+            </div>
+          </div>
+            <div class="form-group">
+            <label for="exampleFormControlFile1">Cover Image</label>
+            <input type="file" class="form-control-file" name="img" id="exampleFormControlFile1">
+          </div>
+          <input type="hidden" name="pid" value="<?= $_GET['id'] ?>">
+          <input type="hidden" name="p_img" value="<?= $product['product_img'] ?>">
+          <button type="submit" class="btn btn-primary" name="submit">Update Product</button>
+        </form>
 
-                          <?php
-
-                          }
-
-                          ?>
-
-
-                        </tbody>
-                    </table>
-                  </div>
+                    </div>
                 </div>
               </div>
             </div>

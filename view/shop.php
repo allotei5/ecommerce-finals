@@ -31,25 +31,10 @@ if(isset($_GET['cat'])){
 
       </style>
 
-    <title>Home</title>
+    <title>All Products</title>
   </head>
   <body>
       <?php include_once("navbar.php"); ?>
-      <div class="header-custom-2">
-      <div class="container-custom">
-          <div class="row-custom">
-              <div class="col-2-custom texts">
-                  <h1 style="color: #fff">Shop</h1>
-                  <p style="color: #fff">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
-                  <a href="" class="btn-custom">Explore Now</a>
-
-              </div>
-
-          </div>
-
-
-      </div>
-      </div>
 
       <!-- Featured Categories -->
 
@@ -62,8 +47,8 @@ if(isset($_GET['cat'])){
                      ?>
                 <div class="col-4-custom">
                     <div class="img-style"><img src="<?= '../'.$value['product_img']?>"></div>
-                    <h4><?= $value['product_name'] ?></h4>
-                    <p>GHc<?= $value['product_price'] ?> </p>
+                    <h4 style="text-align:center; font-size:20px; padding-top:5px"><?= $value['product_name'] ?></h4>
+                    <p style="text-align:center;">GHc <?= $value['product_price'] ?> </p>
                     <div class="row">
                         <div class="col"><a href="<?= "single-product.php?id=".$value['id'] ?>" class="btn-custom" styl="margin: 0">View</a></div>
                         <div class="col"><a href="<?= '../functions/cart_add.php?id='.$value['id'].'&qty=1' ?>" class="btn-custom" styl="margin: 0">Cart</a></div>

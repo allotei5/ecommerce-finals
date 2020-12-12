@@ -27,27 +27,25 @@ if(isset($_GET['id'])){
 
       <div class="container-custom">
           <?php include_once("navbar.php"); ?>
-
-
-
       </div>
 
 
       <!-- Single Product Details -->
       <div class="small-container single-product">
+
           <div class="row-custom">
-              <div class="col-2-custom"><img src="<?= '../'.$product['product_img'] ?>" width="100%"></div>
+              <div class="col-2-customm"><img src="<?= '../'.$product['product_img'] ?>" width="80%"></div>
               <div class="col-2-custom">
                   <p><?=  $product['cat_name'] ?></p>
                   <h3 style="margin-bottom: 10px"><?= $product['product_name'] .' by '. $product['username'] ?></h3>
-                  <h7>GHc <?= $product['product_price'] ?></h7>
+                  <p>GHc <?= $product['product_price'] ?></p>
                   <form method="get" action="../functions/cart_add.php">
                       <input type="number" name="qty" value="1">
                       <input type="hidden" name="id" value="<?= $product['id'] ?>">
                       <button class="btn-custom"> Add To Cart</button>
 
                   </form>
-                  <h4>Product Description:</h4>
+                  <h4 style="margin: 15px 0">Product Description:</h4>
                   <p><?=  $product['product_desc'] ?></p>
 
               </div>
@@ -60,7 +58,7 @@ if(isset($_GET['id'])){
 
       <!-- Featured Products -->
 
-      <div class="small-container">
+      <div class="small-container" style="margin-top: 50px">
             <h2 class="title">Related Products</h2>
             <div class="row-custom">
                 <?php

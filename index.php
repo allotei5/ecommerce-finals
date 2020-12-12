@@ -9,7 +9,7 @@ include_once (dirname(__FILE__)).'/settings/core.php';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -95,46 +95,69 @@ include_once (dirname(__FILE__)).'/settings/core.php';
                 <div class="col-4-custom">
                     <div class="img-style"><img src="images/nier.jpg"></div>
                     <h4>Nier: Automata</h4>
-                    <p>Price: </p>
-                    <div class="row">
-                        <div class="col"><a href="" class="btn-custom" styl="margin: 0">View</a></div>
-                        <div class="col"><a href="" class="btn-custom" styl="margin: 0">Cart</a></div>
-
-                    </div>
+                    <p>GHC 15</p>
                 </div>
                 <div class="col-4-custom">
                     <div class="img-style"><img src="images/Borderlands_3_cover_art.jpg"></div>
                     <h4>Nier: Automata</h4>
-                    <p>Price: </p>
-                    <div class="row">
-                        <div class="col"><a href="" class="btn-custom" styl="margin: 0">View</a></div>
-                        <div class="col"><a href="" class="btn-custom" styl="margin: 0">Cart</a></div>
-
-                    </div>
+                    <p>GHC 15</p>
                 </div>
                 <div class="col-4-custom">
                     <div class="img-style"><img src="images/ACValhalla%20(1).jpg"></div>
                     <h4>Nier: Automata</h4>
-                    <p>Price: </p>
-                    <div class="row">
-                        <div class="col"><a href="" class="btn-custom" styl="margin: 0">View</a></div>
-                        <div class="col"><a href="" class="btn-custom" styl="margin: 0">Cart</a></div>
-
-                    </div>
+                    <p>GHC 15</p>
                 </div>
                 <div class="col-4-custom">
                     <div class="img-style"><img src="images/skynews-playstation-ps5-sony_5011393.jpg"></div>
                     <h4>Nier: Automata</h4>
-                    <p>Price: </p>
-                    <div class="row">
-                        <div class="col"><a href="" class="btn-custom" styl="margin: 0">View</a></div>
-                        <div class="col"><a href="" class="btn-custom" styl="margin: 0">Cart</a></div>
-
-                    </div>
+                    <p>GHC 15</p>
                 </div>
 
 
             </div>
+
+      </div>
+
+      <div class="footer">
+          <div class="container-custom">
+              <div class="row-custom">
+                  <div class="footer-col-1">
+                      <h3>Download Our App</h3>
+                      <p>Download App for Android and ios mobile phone</p>
+
+
+                  </div>
+
+                  <div class="footer-col-2">
+                      <img src="images/nier.jpg">
+                      <p>Our purpose is to sustainably make the pleasure and benefits of sports accessible to many</p>
+                  </div>
+
+                  <div class="footer-col-3">
+
+                      <h3>Useful Links</h3>
+                      <ul>
+                          <li>Home</li>
+                          <li>Shop</li>
+                          <li>Cart</li>
+
+                      </ul>
+                  </div>
+
+                  <div class="footer-col-4">
+                      <h3>Follow Us</h3>
+                      <ul>
+                          <li>Facebook</li>
+                          <li>Twitter</li>
+                          <li>Instagram</li>
+
+                      </ul>
+                  </div>
+
+              </div>
+
+          </div>
+
 
       </div>
 

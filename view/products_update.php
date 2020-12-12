@@ -3,6 +3,7 @@ include_once("../settings/core.php");
 include_once("../controllers/product_controller.php");
 $categories_arr = display_categories();
 $product = display_one_product($_GET['id']);
+print_r($product);
 ?>
 
 <!doctype html>
@@ -61,6 +62,7 @@ $product = display_one_product($_GET['id']);
             <input type="file" class="form-control-file" name="img" id="exampleFormControlFile1">
           </div>
           <input type="hidden" name="pid" value="<?= $_GET['id'] ?>">
+          <input type="hidden" name="p_img" value="<?= $product['product_img'] ?>">
           <button type="submit" class="btn btn-primary" name="submit">Add Product</button>
         </form>
 

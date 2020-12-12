@@ -56,7 +56,7 @@ if(isset($_POST['submit'])){
         if($uploadImage){
             $addProduct = add_new_product_fxn($category, $seller_id, $title, $price, $desc, $target_file, $stock);
 
-            if($addProduct){header("location: ../view/products.php");}
+            if($addProduct){header("location: ../admin/dashboard.php");}
             else{echo "add failed"; }
         }else{
             echo "upload failed";

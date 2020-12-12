@@ -10,6 +10,8 @@ if(isset($_POST['submit'])){
     $category = $_POST['category'];
     $stock = $_POST['stock'];
     $pid = $_POST['pid'];
+    $pimg = $_POST['p_img'];
+
 
     //check if fields are empty
     if(empty($title)){array_push($errors, "title is required");}
@@ -59,10 +61,13 @@ if(isset($_POST['submit'])){
         if(count($errors) == 0){
             $uploadImage = move_uploaded_file($_FILES["img"]["tmp_name"], '../'.$target_file);
             if($uploadImage){
+
+
+
                 $updateProduct = update_one_product($category, $title, $price, $desc, $target_file, $stock, $pid);
 
                 if($updateProduct){
-                    header("location: ../view/products.php");
+                    header("location: ../admin/dashboard.php");
                 }else{
                     echo "update failed";
                 }
@@ -72,10 +77,10 @@ if(isset($_POST['submit'])){
         }
     }else{
         if(count($errors) == 0){
-            $updateProduct = update_one_product($category, $title, $price, $desc, $target_file, $stock, $pid);
+            $updateProduct = update_one_product($category, $title, $price, $desc, $pimg, $stock, $pid);
 
                 if($updateProduct){
-                  header("location: ../view/products.php");
+                  header("location: ../admin/dashboard.php");
                 }else{
                     echo "update failed";
                 }

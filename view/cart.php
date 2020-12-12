@@ -65,7 +65,7 @@ if(isset($_SESSION['user_id'])){
 
               <td class="single-product">
                   <form method="get" action="../functions/cart_update.php">
-                      <input type="number" name="qty" value="<?= $value['qty'] ?>">
+                      <input type="number" name="qty" value="<?= $value['qty'] ?>" min="1">
                       <input type="hidden" name="id" value="<?= $value['product_id'] ?>">
                       <button class="btn-custom" name="submit"> Update </button>
                   </form>
@@ -87,7 +87,7 @@ if(isset($_SESSION['user_id'])){
 
       <div>
 
-          <button class="btn-custom" href="checkout.php">Continue Shopping</button>
+          <a href="shop.php"><button class="btn-custom">Continue Shopping</button></a>
           <a href="checkout.php"><button class="btn-custom">Check Out</button></a>
 
           </div>
@@ -126,7 +126,7 @@ if(isset($_SESSION['user_id'])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     -->
 <?php
-    print_r($_SESSION);
+
     if(isset($_SESSION['notifs'])){
         display_error_message($_SESSION['notifs']);
     }

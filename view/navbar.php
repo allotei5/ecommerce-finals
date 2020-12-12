@@ -18,7 +18,7 @@
                         <li><a href="../index.php">Home</a></li>
                         <li><a href="shop.php">Shop</a></li>
                         <li><a href="cart.php">Cart(<?= $cart['count'] ?>)</a></li>
-                        <li><a href="products.php">Products</a></li>
+                        <li><a href="../admin/dashboard.php">Products</a></li>
                         <li><a href="categories.php">Category</a></li>
                         <li><a href="../login/logout.php">Logout</a></li>
 
@@ -29,7 +29,7 @@
                         <li><a href="../index.php">Home</a></li>
                         <li><a href="shop.php">Shop</a></li>
                         <li><a href="cart.php">Cart(<?= $cart['count'] ?>)</a></li>
-                        <li><a href="products.php">Your Products</a></li>
+                        <li><a href="../admin/dashboard.php">Your Products</a></li>
                         <li><a href="products.php">Your Orders</a></li>
                         <li><a href="../login/logout.php">Logout</a></li>
 
