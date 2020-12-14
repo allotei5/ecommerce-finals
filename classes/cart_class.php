@@ -48,7 +48,7 @@ class cart_class extends db_connection
     }
 
     public function update_stock($product_id, $r_qty){
-        $sql = "UPDATE `products` SET `stock`='$r_qty' WHERE `product_id`='$product_id'";
+        $sql = "UPDATE `products` SET `stock`='$r_qty' WHERE `id`='$product_id'";
         return $this->db_query($sql);
     }
 
@@ -138,7 +138,7 @@ FROM `orders`
 JOIN `users` ON (`users`.`id` = `orders`.`customer_id`)
 JOIN `order_details` ON (`order_details`.`order_id` = `orders`.`id`)
 JOIN `products` ON (`products`.`id` = `order_details`.`product_id`)
-WHERE `users`.`id`='$seller_id'
+WHERE `products`.`seller_id`='$seller_id'
 AND `order_details`.`status`='unfulfilled'";
         return $this->db_query($sql);
     }
@@ -149,7 +149,7 @@ FROM `orders`
 JOIN `users` ON (`users`.`id` = `orders`.`customer_id`)
 JOIN `order_details` ON (`order_details`.`order_id` = `orders`.`id`)
 JOIN `products` ON (`products`.`id` = `order_details`.`product_id`)
-WHERE `users`.`id`='$seller_id'
+WHERE `products`.`seller_id`='$seller_id'
 AND `order_details`.`status`='fulfilled'";
         return $this->db_query($sql);
     }
@@ -160,7 +160,12 @@ AND `order_details`.`status`='fulfilled'";
     }
 
     public function get_seller_sales($seller_id){
-        $sql = "SELECT SUM(`products`.`product_price`*`order_details`.`qty`) as result FROM `users`,`order_details` JOIN `products` ON (`order_details`.`product_id` = `products`.`id`) WHERE `users`.`id`='$seller_id'";
+        $sql = "SELECT SUM(`products`.`product_price`*`order_details`.`qty`) as result
+FROM `orders`
+JOIN `users` ON (`users`.`id` = `orders`.`customer_id`)
+JOIN `order_details` ON (`order_details`.`order_id` = `orders`.`id`)
+JOIN `products` ON (`products`.`id` = `order_details`.`product_id`)
+WHERE `products`.`seller_id`='$seller_id'";
         return $this->db_query($sql);
     }
 

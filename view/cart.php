@@ -24,7 +24,7 @@ if(isset($_SESSION['user_id'])){
 
     <link rel="stylesheet" href="../css/custom.css">
 
-    <title>Home</title>
+    <title>Cart</title>
   </head>
   <body>
 
@@ -102,16 +102,11 @@ if(isset($_SESSION['user_id'])){
 
       ?>
 
-   <?php
-
-      if(isset($_SESSION['notifs'])){
-        display_error_message($_SESSION['notifs']);
-    }
-    ?>
 
 
 
 
+<?php include('footer.php') ?>
 
 
     <!-- Optional JavaScript; choose one of the two! -->
@@ -119,6 +114,7 @@ if(isset($_SESSION['user_id'])){
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

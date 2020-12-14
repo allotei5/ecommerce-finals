@@ -18,7 +18,8 @@ The above copyright notice and this permission notice shall be included in all c
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head> <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
@@ -67,6 +68,24 @@ The above copyright notice and this permission notice shall be included in all c
             <a class="nav-link" href="./orders.php">
               <i class="material-icons">orders</i>
               <p>Orders</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../index.php">
+              <i class="material-icons">orders</i>
+              <p>Home</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../view/shop.php">
+              <i class="material-icons">orders</i>
+              <p>Shop</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../login/logout.php">
+              <i class="material-icons">orders</i>
+              <p>Logout</p>
             </a>
           </li>
 
@@ -174,6 +193,8 @@ The above copyright notice and this permission notice shall be included in all c
       </footer>
     </div>
   </div>
+
+
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
@@ -388,6 +409,14 @@ The above copyright notice and this permission notice shall be included in all c
       });
     });
   </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <?php
+
+    if(isset($_SESSION['notifs'])){
+        print_r($_SESSION);
+        display_error_message($_SESSION['notifs']);
+    }
+    ?>
 </body>
 
 </html>

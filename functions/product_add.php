@@ -1,4 +1,5 @@
 <?php
+require("../settings/core.php");
 require("../controllers/product_controller.php");
 $errors = array();
 
@@ -61,11 +62,9 @@ if(isset($_POST['submit'])){
         }else{
             echo "upload failed";
         }
-    }
-    if(count($errors) >0){
-        foreach($errors as $error){
-            echo $error."<br>";
-        }
+    }else{
+        $_SESSION['notifs'] = $errors;
+        header("location: ../admin/products_add.php");
     }
 }
 ?>

@@ -21,7 +21,7 @@ if(isset($_GET['status'])){
                 //record order details
                 $add_details = add_order_details($recent['recent'], $value['product_id'], $value['qty'], $ord_status);
                 $stock = get_stock($value['product_id']);
-                $r_qty = $stock['stock'];
+                $r_qty = $stock['stock'] - $value['qty'];
                 $update = update_stock($value['product_id'], $r_qty);
             }
 

@@ -31,7 +31,7 @@ if(isset($_GET['ord_id'])){
 
       </style>
 
-    <title>Home</title>
+    <title>Payment Success</title>
   </head>
   <body>
       <?php include_once("navbar.php"); ?>
@@ -119,7 +119,7 @@ if(isset($_GET['ord_id'])){
       </div>
 
 
-
+<?php include('footer.php') ?>
 
 
     <!-- Optional JavaScript; choose one of the two! -->

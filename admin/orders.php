@@ -1,7 +1,6 @@
 <?php
 include_once("../settings/core.php");
 include_once("../controllers/cart_controller.php");
-print_r($_SESSION);
 $orders = get_unfulfilled_seller_orders($_SESSION['user_id']);
 $fulfilled = get_fulfilled_seller_orders($_SESSION['user_id']);
 $sales = get_seller_sales($_SESSION['user_id']);
@@ -69,6 +68,24 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Orders</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../index.php">
+              <i class="material-icons">orders</i>
+              <p>Home</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../view/shop.php">
+              <i class="material-icons">orders</i>
+              <p>Shop</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../login/logout.php">
+              <i class="material-icons">orders</i>
+              <p>Logout</p>
+            </a>
+          </li>
 
         </ul>
       </div>
@@ -104,7 +121,7 @@ The above copyright notice and this permission notice shall be included in all c
                     <i class="material-icons">money</i>
                   </div>
                   <p class="card-category">Withdrawable</p>
-                  <h3 class="card-title">Ghc 500</h3>
+                  <h3 class="card-title">Ghc <?= $sales[0]['result']*0.9 ?></h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">

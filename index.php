@@ -1,5 +1,7 @@
 <?php
 include_once (dirname(__FILE__)).'/settings/core.php';
+include_once (dirname(__FILE__)).'/controllers/cart_controller.php';
+include_once (dirname(__FILE__)).'/controllers/product_controller.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -18,43 +20,102 @@ include_once (dirname(__FILE__)).'/settings/core.php';
     <title>Home</title>
   </head>
   <body>
-      <div class="header-custom">
       <div class="container-custom">
           <div class="navbar-custom">
               <div class="logo-custom">
-                    Navbar
+                    SoutSide Gaming
 
               </div>
               <nav>
                     <ul>
-                        <li><a href="">Home</a></li>
-                        <li><a href="">Shop</a></li>
-                        <li><a href="">Sign Up</a></li>
-                        <li><a href="">Login</a></li>
-                        <li><a href="">Cart</a></li>
+                        <?php
+                        //if admin
+
+                        if(isset($_SESSION['user_role'])){
+                            $cart = get_cart_items_no($_SESSION['user_id']);
+                            if($_SESSION['user_role'] == 1){
+
+                                ?>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="view/shop.php">Shop</a></li>
+                        <li><a href="view/cart.php">Cart(<?= $cart['count'] ?>)</a></li>
+                        <li><a href="admin/dashboard.php">Products</a></li>
+                        <li><a href="view/categories.php">Category</a></li>
+                        <li><a href="login/logout.php">Logout</a></li>
+
+
+                        <?php
+                            }elseif($_SESSION['user_role'] == 2){
+                                ?>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="view/shop.php">Shop</a></li>
+                        <li><a href="view/cart.php">Cart(<?= $cart['count'] ?>)</a></li>
+                        <li><a href="admin/dashboard.php">Your Products</a></li>
+                        <li><a href="admin/orders.php">Your Orders</a></li>
+                        <li><a href="login/logout.php">Logout</a></li>
+
+
+
+                        <?php
+                            }elseif($_SESSION['user_role'] == 3){
+                                ?>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="view/shop.php">Shop</a></li>
+                        <li><a href="view/cart.php">Cart(<?= $cart['count'] ?>)</a></li>
+                        <li><a href="login/seller.php">Become a Seller</a></li>
+
+                        <li><a href="login/logout.php">Logout</a></li>
+
+                        <?php
+                            }
+                        }else{
+                            $ip_add = getRealIpAddr();
+                            $cart = get_cart_items_no_nlog($ip_add);
+                        ?>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="view/shop.php">Shop</a></li>
+                        <li><a href="login/sign-up.php">Sign Up</a></li>
+                        <li><a href="login/login.php">Login</a></li>
+                        <li><a href="view/cart.php">Cart(<?= $cart['count'] ?>)</a></li>
+
+                        <?php
+                        }
+
+                        ?>
+
+                        <li class="single-product">
+                  <form method="get" action="view/search-results.php">
+                      <input type="text" name="term" placeholder='search..' style='width: 200px; border-radius: 25px;'>
+                      <button class="btn-custom"> Search</button>
+
+                  </form></li>
 
                     </ul>
+
 
 
               </nav>
 
           </div>
+
+
+
+      </div>
+
+      <div class="header-custom">
+          <div class="container-custom">
           <div class="row-custom">
-              <div class="col-2-custom">
-                  <h1 style="color: #fff">Lorem ipsum dolor sint!</h1>
-                  <p style="color: #fff">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
-                  <a href="" class="btn-custom">Explore Now</a>
-
+              <div class="col-2-custom texts">
+                  <h1 style="color: #fff">Welcome to the SouthSide</h1>
+                  <p style="color: #fff">Your home for premium games and accessories</p>
+                  <a href="view/shop.php" class="btn-custom" style="margin-top: 50px">Shop Now</a>
               </div>
-              <div class="col-2-custom">
 
-
-              </div>
           </div>
 
 
       </div>
-      </div>
+       </div>
 
       <!-- Featured Categories -->
       <div class="categories-custom">
@@ -92,27 +153,25 @@ include_once (dirname(__FILE__)).'/settings/core.php';
       <div class="small-container">
             <h2 class="title">Featured Products</h2>
             <div class="row-custom">
-                <div class="col-4-custom">
-                    <div class="img-style"><img src="images/nier.jpg"></div>
-                    <h4>Nier: Automata</h4>
-                    <p>GHC 15</p>
-                </div>
-                <div class="col-4-custom">
-                    <div class="img-style"><img src="images/Borderlands_3_cover_art.jpg"></div>
-                    <h4>Nier: Automata</h4>
-                    <p>GHC 15</p>
-                </div>
-                <div class="col-4-custom">
-                    <div class="img-style"><img src="images/ACValhalla%20(1).jpg"></div>
-                    <h4>Nier: Automata</h4>
-                    <p>GHC 15</p>
-                </div>
-                <div class="col-4-custom">
-                    <div class="img-style"><img src="images/skynews-playstation-ps5-sony_5011393.jpg"></div>
-                    <h4>Nier: Automata</h4>
-                    <p>GHC 15</p>
+                <?php
+                    $products = display_all_products_fxn();
+                    for($i=0; $i<8; $i++){
+                        ?>
+
+                    <div class="col-4-custom">
+                    <a href="<?= 'view/single-product.php?id='.$products[$i]['id'] ?>">
+                        <div class="img-style"><img src="<?= $products[$i]['product_img'] ?>"></div>
+                    <h4><?= $products[$i]['product_name'] ?></h4>
+                    <p>GHC <?= $products[$i]['product_price'] ?></p>
+
+                    </a>
                 </div>
 
+
+                <?php
+                    }
+
+                ?>
 
             </div>
 

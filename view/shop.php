@@ -40,14 +40,14 @@ if(isset($_GET['cat'])){
 
       <!-- Featured Products -->
       <div class="small-container">
-            <h2 class="title">Featured Products</h2>
+            <h2 class="title">All Products</h2>
             <div class="row-custom">
                 <?php
                  foreach($products_arr as $key => $value){
                      ?>
                 <div class="col-4-custom">
                     <div class="img-style"><img src="<?= '../'.$value['product_img']?>"></div>
-                    <h4 style="text-align:center; font-size:20px; padding-top:5px"><?= $value['product_name'] ?></h4>
+                    <h4 style="text-align:center; font-size:17px; padding-top:5px"><?= $value['product_name'] ?></h4>
                     <p style="text-align:center;">GHc <?= $value['product_price'] ?> </p>
                     <div class="row">
                         <div class="col"><a href="<?= "single-product.php?id=".$value['id'] ?>" class="btn-custom" styl="margin: 0">View</a></div>
@@ -65,6 +65,7 @@ if(isset($_GET['cat'])){
             </div>
 
       </div>
+      <?php include('footer.php') ?>
 
 
     <!-- Optional JavaScript; choose one of the two! -->

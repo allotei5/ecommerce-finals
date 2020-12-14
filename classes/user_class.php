@@ -23,6 +23,17 @@ class user_class extends db_connection
         return $this->db_query($sql);
     }
 
+    public function select_user_details($user_id){
+        $sql = "SELECT * FROM `users` WHERE `id`='$user_id'";
+        return $this->db_query($sql);
+    }
+
+    public function update_to_seller($username, $email, $country, $city, $street_name, $contact, $id){
+        $sql = "UPDATE `users` SET `username`='$username',`email`='$email', `country`='$country',`city`='$city',`street_name`='$street_name',`contact`='$contact',`user_role`=2 WHERE `id`='$id'";
+
+        return $this->db_query($sql);
+    }
+
 
 }
 

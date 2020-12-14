@@ -1,7 +1,7 @@
 <div class="container-custom">
           <div class="navbar-custom">
               <div class="logo-custom">
-                    Navbar
+                    SoutSide Gaming
 
               </div>
               <nav>
@@ -30,7 +30,7 @@
                         <li><a href="shop.php">Shop</a></li>
                         <li><a href="cart.php">Cart(<?= $cart['count'] ?>)</a></li>
                         <li><a href="../admin/dashboard.php">Your Products</a></li>
-                        <li><a href="products.php">Your Orders</a></li>
+                        <li><a href="../admin/orders.php">Your Orders</a></li>
                         <li><a href="../login/logout.php">Logout</a></li>
 
 
@@ -41,6 +41,7 @@
                         <li><a href="../index.php">Home</a></li>
                         <li><a href="shop.php">Shop</a></li>
                         <li><a href="cart.php">Cart(<?= $cart['count'] ?>)</a></li>
+                        <li><a href="../login/seller.php">Become a Seller</a></li>
 
                         <li><a href="../login/logout.php">Logout</a></li>
 
@@ -63,7 +64,7 @@
 
                         <li class="single-product">
                   <form method="get" action="search-results.php">
-                      <input type="text" name="term" placeholder='search..' style='width: 200px;'>
+                      <input type="text" name="term" placeholder='search..' style='width: 200px; border-radius: 25px;'>
                       <button class="btn-custom"> Search</button>
 
                   </form></li>

@@ -21,7 +21,7 @@ if(isset($_GET['term'])){
 
     <link rel="stylesheet" href="../css/custom.css">
 
-    <title>Home</title>
+    <title>Search Results</title>
   </head>
   <body>
       <?php include_once("navbar.php"); ?>
@@ -55,7 +55,7 @@ if(isset($_GET['term'])){
 
       </div>
 
-
+<?php include('footer.php') ?>
 
 
     <!-- Optional JavaScript; choose one of the two! -->

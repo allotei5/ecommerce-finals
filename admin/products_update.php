@@ -70,6 +70,24 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Orders</p>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../index.php">
+              <i class="material-icons">orders</i>
+              <p>Home</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../view/shop.php">
+              <i class="material-icons">orders</i>
+              <p>Shop</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../login/logout.php">
+              <i class="material-icons">orders</i>
+              <p>Logout</p>
+            </a>
+          </li>
 
         </ul>
       </div>

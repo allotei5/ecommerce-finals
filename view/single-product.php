@@ -21,7 +21,7 @@ if(isset($_GET['id'])){
 
     <link rel="stylesheet" href="../css/custom.css">
 
-    <title>Home</title>
+    <title><?= $product['product_name'] ?></title>
   </head>
   <body>
 
@@ -68,8 +68,8 @@ if(isset($_GET['id'])){
                      ?>
                 <div class="col-4-custom">
                     <div class="img-style"><img src="<?= '../'.$value['product_img']?>"></div>
-                    <h4><?= $value['product_name'] ?></h4>
-                    <p>GHc<?= $value['product_price'] ?> </p>
+                    <h4 style="text-align:center; font-size:17px; padding-top:5px"><?= $value['product_name'] ?></h4>
+                    <p style="text-align:center;">GHc <?= $value['product_price'] ?> </p>
                     <div class="row">
                         <div class="col"><a href="<?= "single-product.php?id=".$value['id'] ?>" class="btn-custom" styl="margin: 0">View</a></div>
                         <div class="col"><a href="" class="btn-custom" styl="margin: 0">Cart</a></div>
@@ -91,7 +91,7 @@ if(isset($_GET['id'])){
 
       </div>
 
-
+      <?php include('footer.php') ?>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->

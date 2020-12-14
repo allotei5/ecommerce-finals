@@ -27,7 +27,7 @@ if(isset($_GET['submit'])){
         }
 
     }else{
-        add_to_notifs("We don't have that amount in stock consider reducing the amount. We have ".$stock['stock']." books available");
+        add_to_notifs("We don't have that amount in stock consider reducing the amount. We have ".$stock['stock']." of the product available");
     }
 }
 

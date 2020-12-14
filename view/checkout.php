@@ -25,7 +25,7 @@ if(isset($_SESSION['user_id'])){
 
     <link rel="stylesheet" href="../css/custom.css">
 
-    <title>Home</title>
+    <title>Check Out</title>
   </head>
   <body>
 

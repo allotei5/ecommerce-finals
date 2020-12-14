@@ -50,4 +50,34 @@ function verify_user_fxn($email){
         return false;
     }
 }
+
+function select_user_details($user_id){
+    //create instance of class
+    $user_object = new user_class;
+
+    //run the register query
+    $run_query = $user_object->select_user_details($user_id);
+
+    if($run_query){
+        $email_arr = array();
+        $email_arr = $user_object->db_fetch();
+        return $email_arr;
+    }else{
+        return false;
+    }
+}
+
+function update_to_seller($username, $email, $country, $city, $street_name, $contact, $id){
+    //create instance of class
+    $user_object = new user_class;
+
+    //run the register query
+    $run_query = $user_object->update_to_seller($username, $email, $country, $city, $street_name, $contact, $id);
+
+    if($run_query){
+        return $run_query;
+    }else{
+        return false;
+    }
+}
 ?>
